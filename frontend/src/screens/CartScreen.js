@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { Row, Col, ListGroup, Image, Form, Button, Card, ListGroupItem} from 'react-bootstrap'
+import { Row, Col, ListGroup, Image, Form, Button, Card} from 'react-bootstrap'
 import Message from '../components/Message'
 import { addToCart,removeFromCart } from '../actions/cartActions'
 
@@ -46,8 +46,7 @@ const CartScreen = ({match, location, history}) => {
                  <Col md={2}>
                  <Form.Control as='select' value={item.qty} onChange={(e) => dispatch(addToCart(item.product,
                   Number(e.target.value)))}>
-                     {
-                      [... Array(item.countInStock).keys()].map( (x) => (
+                     {[...Array(item.countInStock).keys()].map((x) => (
                          <option key={x+1} value={x+1}>
                           {x+1} 
                           </option>
@@ -85,8 +84,7 @@ const CartScreen = ({match, location, history}) => {
           </ListGroup>
         </Card>
       </Col>
-   </Row>
-      
+   </Row>  
     }
    
 

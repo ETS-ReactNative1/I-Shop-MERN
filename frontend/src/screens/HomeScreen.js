@@ -17,7 +17,7 @@ const HomeScreen = () => {
 
   useEffect(()=>{
     dispatch(listProducts())
-  }, [])
+  }, [dispatch])
 
 
   return (
@@ -37,7 +37,7 @@ const HomeScreen = () => {
     </Row>)} 
     
     </>
-     
+    
   )
 }
 
