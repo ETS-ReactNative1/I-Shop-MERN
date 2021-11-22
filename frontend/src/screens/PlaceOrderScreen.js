@@ -25,8 +25,11 @@ const PlaceOrderScreen = ({ history }) => {
   cart.itemsPrice = addDecimals(
     cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
   )
+  //Free Shipping above 100 usd
   cart.shippingPrice = addDecimals(cart.itemsPrice > 100 ? 0 : 100)
+  //Tax of 15%
   cart.taxPrice = addDecimals(Number((0.15 * cart.itemsPrice).toFixed(2)))
+
   cart.totalPrice = (
     Number(cart.itemsPrice) +
     Number(cart.shippingPrice) +
@@ -41,7 +44,7 @@ const PlaceOrderScreen = ({ history }) => {
       history.push(`/order/${order._id}`)
       
     }
-    // eslint-disable-next-line
+   // eslint-disable-next-line 
   }, [history, success])
 
   const placeOrderHandler = () => {
@@ -67,8 +70,9 @@ const PlaceOrderScreen = ({ history }) => {
             <ListGroup.Item>
               <h2>Shipping</h2>
               <p>
-                <strong>Address:</strong>
-                {cart.shippingAddress.address}, {cart.shippingAddress.city}{' '}
+                <strong>Address: </strong>
+                {cart.shippingAddress.address},
+                {cart.shippingAddress.city}{' '}
                 {cart.shippingAddress.postalCode},{' '}
                 {cart.shippingAddress.country}
               </p>
@@ -82,9 +86,9 @@ const PlaceOrderScreen = ({ history }) => {
 
             <ListGroup.Item>
               <h2>Order Items</h2>
-              {cart.cartItems.length === 0 ? (
+              {cart.cartItems.length === 0 ? 
                 <Message>Your cart is empty</Message>
-              ) : (
+               : (
                 <ListGroup variant='flush'>
                   {cart.cartItems.map((item, index) => (
                     <ListGroup.Item key={index}>
@@ -103,7 +107,7 @@ const PlaceOrderScreen = ({ history }) => {
                           </Link>
                         </Col>
                         <Col md={4}>
-                          {item.qty} x ${item.price} = ${item.qty * item.price}
+                        {item.qty} x ${item.price} = ${item.qty * item.price}
                         </Col>
                       </Row>
                     </ListGroup.Item>

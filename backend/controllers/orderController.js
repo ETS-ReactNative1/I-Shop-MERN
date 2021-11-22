@@ -14,7 +14,14 @@ const addOrderItems = asyncHandler(async (req,res) => {
    return
  }else{
    const order = new Order ({
-    orderItems, user: req.user._id, shippingAddress, paymentMethod, itemsPrice, taxPrice, shippingPrice, totalPrice
+    orderItems,
+    user: req.user._id,
+    shippingAddress,
+    paymentMethod,
+    itemsPrice,
+    taxPrice, 
+    shippingPrice,
+    totalPrice,
    })
 
    const createdOrder = await order.save()

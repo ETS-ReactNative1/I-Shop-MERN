@@ -11,12 +11,11 @@ import { savePaymentMethod } from '../actions/cartActions'
     const {shippingAddress} = cart
 
     if(!shippingAddress){
-      history.push('./shipping')
+      history.push('/shipping')
     }
 
     const [paymentMethod,setPaymentMethod] = useState('PayPal')
     
-
     const dispatch = useDispatch()
 
     const submitHandler = (e) => {
