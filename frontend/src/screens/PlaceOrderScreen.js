@@ -41,11 +41,9 @@ const PlaceOrderScreen = ({ history }) => {
 
   useEffect(() => {
     if (success) {
-      history.push(`/order/${order._id}`)
-      
+      history.push(`/order/${order._id}`)  
     }
-   // eslint-disable-next-line 
-  }, [history, success])
+  }, [history, success, order])
 
   const placeOrderHandler = () => {
     dispatch(
@@ -151,6 +149,7 @@ const PlaceOrderScreen = ({ history }) => {
                 {error && <Message variant='danger'>{error}</Message>}
               </ListGroup.Item>
               <ListGroup.Item>
+              <div className='d-grid gap-3 mt-1'> 
                 <Button
                   type='button'
                   className='btn-block'
@@ -159,6 +158,7 @@ const PlaceOrderScreen = ({ history }) => {
                 >
                   Place Order
                 </Button>
+                </div>
               </ListGroup.Item>
             </ListGroup>
           </Card>
