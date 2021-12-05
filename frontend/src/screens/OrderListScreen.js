@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react'
-import { LinkContainer } from 'react-router-bootstrap'
-import { Table, Button } from 'react-bootstrap'
-import { useDispatch, useSelector } from 'react-redux'
-import Message from '../components/Message'
-import Loader from '../components/Loader'
-import { listOrders } from '../actions/orderActions'
+import React, { useEffect } from "react"
+import { LinkContainer } from "react-router-bootstrap"
+import { Table, Button } from "react-bootstrap"
+import { useDispatch, useSelector } from "react-redux"
+import Message from "../components/Message"
+import Loader from "../components/Loader"
+import { listOrders } from "../actions/orderActions"
 
 const OrderListScreen = ({ history }) => {
   const dispatch = useDispatch()
@@ -19,7 +19,7 @@ const OrderListScreen = ({ history }) => {
     if (userInfo && userInfo.isAdmin) {
       dispatch(listOrders())
     } else {
-      history.push('/login')
+      history.push("/login")
     }
   }, [dispatch, history, userInfo])
 
@@ -54,19 +54,22 @@ const OrderListScreen = ({ history }) => {
                   {order.isPaid ? (
                     order.paidAt.substring(0, 10)
                   ) : (
-                    <i className='fas fa-times' style={{ color: 'red' }}></i>
+                    <i className='fas fa-times' style={{ color: "red" }}></i>
                   )}
                 </td>
                 <td>
                   {order.isDelivered ? (
                     order.deliveredAt.substring(0, 10)
                   ) : (
-                    <i className='fas fa-times' style={{ color: 'red' }}></i>
+                    <i className='fas fa-times' style={{ color: "red" }}></i>
                   )}
                 </td>
                 <td>
                   <LinkContainer to={`/order/${order._id}`}>
-                    <Button variant='light' className='btn-sm d-grid gap-2 mt-1'>
+                    <Button
+                      variant='light'
+                      className='btn-sm d-grid gap-2 mt-1'
+                    >
                       Details
                     </Button>
                   </LinkContainer>

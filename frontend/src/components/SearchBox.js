@@ -24,7 +24,7 @@ const SearchBox = ({history}) => {
      className="me-2"
      ></Form.Control>
     
-    <Button type='submit' variant='success'>Search</Button>
+    <Button type='submit' variant='success' className='search-btn'>Search</Button>
 
     </Form>
   )

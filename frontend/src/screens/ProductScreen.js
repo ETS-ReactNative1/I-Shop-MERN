@@ -1,20 +1,21 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-import { Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'
-import Rating from '../components/Rating'
-import Message from '../components/Message'
-import Loader from '../components/Loader'
-import Meta from '../components/Meta'
-import {listProductDetails,createProductReview} from '../actions/productActions'
-import { PRODUCT_CREATE_REVIEW_RESET } from '../constants/productConstants'
+import React, { useState, useEffect } from "react"
+import { Link } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { Row, Col, Image, ListGroup, Card, Button, Form } from "react-bootstrap"
+import Rating from "../components/Rating"
+import Message from "../components/Message"
+import Loader from "../components/Loader"
+import Meta from "../components/Meta"
+import {
+  listProductDetails,
+  createProductReview,
+} from "../actions/productActions"
+import { PRODUCT_CREATE_REVIEW_RESET } from "../constants/productConstants"
 
-
-
-const ProductScreen = ({history, match}) => {
+const ProductScreen = ({ history, match }) => {
   const [qty, setQty] = useState(1)
   const [rating, setRating] = useState(0)
-  const [comment, setComment] = useState('')
+  const [comment, setComment] = useState("")
 
   const dispatch = useDispatch()
 
@@ -34,7 +35,7 @@ const ProductScreen = ({history, match}) => {
   useEffect(() => {
     if (successProductReview) {
       setRating(0)
-      setComment('')
+      setComment("")
       dispatch(listProductDetails(match.params.id))
     }
     if (!product._id || product._id !== match.params.id) {
@@ -75,7 +76,7 @@ const ProductScreen = ({history, match}) => {
             </Col>
             <Col md={3}>
               <ListGroup variant='flush'>
-                <ListGroup.Item>  
+                <ListGroup.Item>
                   <h3>{product.name}</h3>
                 </ListGroup.Item>
                 <ListGroup.Item>
@@ -106,16 +107,18 @@ const ProductScreen = ({history, match}) => {
                     <Row>
                       <Col>Status:</Col>
                       <Col>
-                        {product.countInStock > 0 ? 'In Stock' : 'Out Of Stock'}
+                        {/* If product in stock */}
+                        {product.countInStock > 0 ? "In Stock" : "Out Of Stock"}
                       </Col>
                     </Row>
                   </ListGroup.Item>
-
+                  {/* Quantity in stock */}
                   {product.countInStock > 0 && (
                     <ListGroup.Item>
                       <Row>
                         <Col>Qty</Col>
                         <Col>
+                          {/* If the value of stock changes per  */}
                           <Form.Control
                             as='select'
                             value={qty}
@@ -135,15 +138,16 @@ const ProductScreen = ({history, match}) => {
                   )}
 
                   <ListGroup.Item>
-                  <div className='d-grid gap-3 mt-4'>
-                    <Button
-                      onClick={addToCartHandler}
-                      className='btn-block'
-                      type='button'
-                      disabled={product.countInStock === 0}
-                    >
-                      Add To Cart
-                    </Button>
+                    {/* If out of stock? Add to cart button is disabled */}
+                    <div className='d-grid gap-3 mt-4'>
+                      <Button
+                        onClick={addToCartHandler}
+                        className='btn-block'
+                        type='button'
+                        disabled={product.countInStock === 0}
+                      >
+                        Add To Cart
+                      </Button>
                     </div>
                   </ListGroup.Item>
                 </ListGroup>
@@ -201,18 +205,18 @@ const ProductScreen = ({history, match}) => {
                         ></Form.Control>
                       </Form.Group>
                       <div className='d-grid gap-3 mt-4'>
-                      <Button
-                        disabled={loadingProductReview}
-                        type='submit'
-                        variant='primary'
-                      >
-                        Submit
-                      </Button>
+                        <Button
+                          disabled={loadingProductReview}
+                          type='submit'
+                          variant='primary'
+                        >
+                          Submit
+                        </Button>
                       </div>
                     </Form>
                   ) : (
                     <Message>
-                      Please <Link to='/login'>sign in</Link> to write a review{' '}
+                      Please <Link to='/login'>sign in</Link> to write a review{" "}
                     </Message>
                   )}
                 </ListGroup.Item>
@@ -221,7 +225,6 @@ const ProductScreen = ({history, match}) => {
           </Row>
         </>
       )}
-   
     </>
   )
 }

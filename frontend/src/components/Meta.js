@@ -1,5 +1,5 @@
-import React from 'react'
-import { Helmet } from 'react-helmet'
+import React from "react"
+import { Helmet } from "react-helmet"
 
 const Meta = ({ title, description, keywords }) => {
   return (
@@ -12,9 +12,9 @@ const Meta = ({ title, description, keywords }) => {
 }
 
 Meta.defaultProps = {
-  title: 'Welcome To I-Shop',
-  description: 'We sell the best products',
-  keywords: 'electronics, buy electronics, new electronics',
+  title: "Welcome To I-Shop",
+  description: "We sell the best products",
+  keywords: "electronics, buy electronics, new electronics",
 }
 
 export default Meta

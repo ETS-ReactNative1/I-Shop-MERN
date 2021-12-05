@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap'
-import { useDispatch, useSelector } from 'react-redux'
-import Message from '../components/Message'
-import CheckoutSteps from '../components/CheckoutSteps'
-import { createOrder } from '../actions/orderActions'
-
+import React, { useEffect } from "react"
+import { Link } from "react-router-dom"
+import { Button, Row, Col, ListGroup, Image, Card } from "react-bootstrap"
+import { useDispatch, useSelector } from "react-redux"
+import Message from "../components/Message"
+import CheckoutSteps from "../components/CheckoutSteps"
+import { createOrder } from "../actions/orderActions"
 
 const PlaceOrderScreen = ({ history }) => {
   const dispatch = useDispatch()
@@ -13,9 +12,9 @@ const PlaceOrderScreen = ({ history }) => {
   const cart = useSelector((state) => state.cart)
 
   if (!cart.shippingAddress.address) {
-    history.push('/shipping')
+    history.push("/shipping")
   } else if (!cart.paymentMethod) {
-    history.push('/payment')
+    history.push("/payment")
   }
   //   Calculate prices
   const addDecimals = (num) => {
@@ -41,7 +40,7 @@ const PlaceOrderScreen = ({ history }) => {
 
   useEffect(() => {
     if (success) {
-      history.push(`/order/${order._id}`)  
+      history.push(`/order/${order._id}`)
     }
   }, [history, success, order])
 
@@ -69,9 +68,8 @@ const PlaceOrderScreen = ({ history }) => {
               <h2>Shipping</h2>
               <p>
                 <strong>Address: </strong>
-                {cart.shippingAddress.address},
-                {cart.shippingAddress.city}{' '}
-                {cart.shippingAddress.postalCode},{' '}
+                {cart.shippingAddress.address},{cart.shippingAddress.city}{" "}
+                {cart.shippingAddress.postalCode},{" "}
                 {cart.shippingAddress.country}
               </p>
             </ListGroup.Item>
@@ -84,9 +82,9 @@ const PlaceOrderScreen = ({ history }) => {
 
             <ListGroup.Item>
               <h2>Order Items</h2>
-              {cart.cartItems.length === 0 ? 
+              {cart.cartItems.length === 0 ? (
                 <Message>Your cart is empty</Message>
-               : (
+              ) : (
                 <ListGroup variant='flush'>
                   {cart.cartItems.map((item, index) => (
                     <ListGroup.Item key={index}>
@@ -105,7 +103,7 @@ const PlaceOrderScreen = ({ history }) => {
                           </Link>
                         </Col>
                         <Col md={4}>
-                        {item.qty} x ${item.price} = ${item.qty * item.price}
+                          {item.qty} x ${item.price} = ${item.qty * item.price}
                         </Col>
                       </Row>
                     </ListGroup.Item>
@@ -149,15 +147,15 @@ const PlaceOrderScreen = ({ history }) => {
                 {error && <Message variant='danger'>{error}</Message>}
               </ListGroup.Item>
               <ListGroup.Item>
-              <div className='d-grid gap-3 mt-1'> 
-                <Button
-                  type='button'
-                  className='btn-block'
-                  disabled={cart.cartItems === 0}
-                  onClick={placeOrderHandler}
-                >
-                  Place Order
-                </Button>
+                <div className='d-grid gap-3 mt-1'>
+                  <Button
+                    type='button'
+                    className='btn-block'
+                    disabled={cart.cartItems === 0}
+                    onClick={placeOrderHandler}
+                  >
+                    Place Order
+                  </Button>
                 </div>
               </ListGroup.Item>
             </ListGroup>
