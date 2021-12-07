@@ -167,9 +167,9 @@ Jane@example.com (Customer)
 #### Optional- VS-Code extentions
 
 - ES7 React/Redux/GraphQl/React-Native snippets - helps generate React components (rafce- react arrow funtion compmonent export)
-- Bracket Pait Colorizer
+- Bracket Paint Colorizer
 - Auto Rename Tag
-- JavaScript ES code snippets
+- JavaScript ES code snippets -It is any collection of previously written code that a developer would like to call on again to use for future reference.
 - Prettier- Code formatter
 
 #### [A little about Redux Pattern](https://www.dotnetcurry.com/reactjs/1356/redux-pattern-tutorial)
